@@ -1,4 +1,4 @@
-package com.geektech.quizapp_gt_3;
+package com.geektech.quizapp_gt_3.main;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
