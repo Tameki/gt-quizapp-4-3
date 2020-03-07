@@ -40,9 +40,9 @@ public class MainFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        mQuestionsSeekbar.getProgress();
-        mCategorySpinner.getSelectedIndex();
-        mCategorySpinner.getSelectedItem();
+//        mQuestionsSeekbar.getProgress();
+//        mCategorySpinner.getSelectedIndex();
+//        mCategorySpinner.getSelectedItem();
     }
 
     @Override
