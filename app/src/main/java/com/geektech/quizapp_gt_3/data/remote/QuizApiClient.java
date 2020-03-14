@@ -34,26 +34,6 @@ public class QuizApiClient implements IQuizApiClient {
                 callback.onFailure(e);
             }
         });
-
-        call.enqueue(new Callback<QuestionsResponse>() {
-            @Override
-            public void onResponse(Call<QuestionsResponse> call, Response<QuestionsResponse> response) {
-                if (response.isSuccessful()) {
-                    if (response.body() != null) {
-                        callback.onSuccess(response.body().getResults());
-                    } else {
-                        callback.onFailure(new Exception("Body is empty"));
-                    }
-                } else {
-                    callback.onFailure(new Exception("Response error " + response.code()));
-                }
-            }
-
-            @Override
-            public void onFailure(Call<QuestionsResponse> call, Throwable t) {
-                callback.onFailure(new Exception(t));
-            }
-        });
     }
 
     private interface QuizApi {

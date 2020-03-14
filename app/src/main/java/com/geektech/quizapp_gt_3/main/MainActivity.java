@@ -7,13 +7,19 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 
+import com.geektech.quizapp_gt_3.App;
 import com.geektech.quizapp_gt_3.R;
+import com.geektech.quizapp_gt_3.data.remote.IQuizApiClient;
 import com.geektech.quizapp_gt_3.history.HistoryFragment;
+import com.geektech.quizapp_gt_3.model.Question;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements BottomNavigationView.OnNavigationItemSelectedListener {
@@ -40,6 +46,20 @@ public class MainActivity extends AppCompatActivity
 
         mBottomNav = findViewById(R.id.main_bottom_nav);
         mBottomNav.setOnNavigationItemSelectedListener(this);
+
+        App.quizRepository.getQuestions(new IQuizApiClient.QuestionsCallback() {
+            @Override
+            public void onSuccess(List<Question> questions) {
+                for (Question question : questions) {
+                    Log.d("ololo", question.getQuestion() + " " + question.getType());
+                }
+            }
+
+            @Override
+            public void onFailure(Exception e) {
+
+            }
+        });
 
         User user = new User("asdasd");
 

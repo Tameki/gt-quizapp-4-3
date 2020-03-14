@@ -41,13 +41,25 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 //        mQuestionsSeekbar.getProgress();
-//        mCategorySpinner.getSelectedIndex();
-//        mCategorySpinner.getSelectedItem();
+//        mCategorySpinner.getSelectedIndex() + 8;
+//        mCategorySpinner.getSelectedItem().toString().toLowerCase();
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    private void onStartClick() {
+//        mQuestionsSeekbar.getProgress();
+        Integer categoryId = null;
+        if (mCategorySpinner.getSelectedIndex() != 0) {
+            categoryId = mCategorySpinner.getSelectedIndex() + 8;
+        }
+//        mCategorySpinner.getSelectedItem().toString().toLowerCase();
+
+        QuizActivity.start(
+                getContext(),
+                mQuestionsSeekbar.getProgress(),
+                categoryId,
+                null
+        );
     }
+
 
 }
