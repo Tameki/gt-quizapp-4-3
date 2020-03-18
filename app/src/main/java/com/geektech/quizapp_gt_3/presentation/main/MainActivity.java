@@ -1,4 +1,4 @@
-package com.geektech.quizapp_gt_3.main;
+package com.geektech.quizapp_gt_3.presentation.main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -7,7 +7,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -15,8 +14,9 @@ import android.view.MenuItem;
 import com.geektech.quizapp_gt_3.App;
 import com.geektech.quizapp_gt_3.R;
 import com.geektech.quizapp_gt_3.data.remote.IQuizApiClient;
-import com.geektech.quizapp_gt_3.history.HistoryFragment;
+import com.geektech.quizapp_gt_3.presentation.history.HistoryFragment;
 import com.geektech.quizapp_gt_3.model.Question;
+import com.geektech.quizapp_gt_3.presentation.settings.SettingsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.List;
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity
                     fragment = HistoryFragment.newInstance();
                     break;
                 default:
-                    fragment = MainFragment.newInstance();
+                    fragment = SettingsFragment.newInstance();
                     break;
             }
 

@@ -1,4 +1,4 @@
-package com.geektech.quizapp_gt_3.quiz;
+package com.geektech.quizapp_gt_3.presentation.quiz;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;

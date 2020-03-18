@@ -1,8 +1,6 @@
-package com.geektech.quizapp_gt_3.main;
+package com.geektech.quizapp_gt_3.presentation.main;
 
 import com.geektech.quizapp_gt_3.core.ChangeListener;
-
-import java.util.ArrayList;
 
 public class User {
     private String name;

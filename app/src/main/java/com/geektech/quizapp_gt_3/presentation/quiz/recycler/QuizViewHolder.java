@@ -1,4 +1,4 @@
-package com.geektech.quizapp_gt_3.quiz.recycler;
+package com.geektech.quizapp_gt_3.presentation.quiz.recycler;
 
 import android.view.View;
 
