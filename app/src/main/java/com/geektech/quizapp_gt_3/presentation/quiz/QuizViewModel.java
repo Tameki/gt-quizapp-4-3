@@ -1,9 +1,13 @@
 package com.geektech.quizapp_gt_3.presentation.quiz;
 
+import android.util.Log;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.geektech.quizapp_gt_3.App;
+import com.geektech.quizapp_gt_3.core.SingleLiveEvent;
+import com.geektech.quizapp_gt_3.data.QuizRepository;
 import com.geektech.quizapp_gt_3.data.remote.IQuizApiClient;
 import com.geektech.quizapp_gt_3.model.Question;
 import com.geektech.quizapp_gt_3.model.QuizResult;
@@ -14,11 +18,15 @@ import java.util.List;
 
 public class QuizViewModel extends ViewModel {
 
+    private QuizRepository quizRepository = App.quizRepository;
     private ArrayList<Question> mQuestions = new ArrayList<>();
 
     MutableLiveData<List<Question>> questions = new MutableLiveData<>();
     MutableLiveData<Boolean> isLoading = new MutableLiveData<>();
     MutableLiveData<Integer> currentQuestionPosition = new MutableLiveData<>();
+
+    SingleLiveEvent<Void> finishEvent = new SingleLiveEvent<>();
+    SingleLiveEvent<Integer> openResultEvent = new SingleLiveEvent<>();
 
     private Integer currentQuestionPosition() {
         return currentQuestionPosition.getValue();
@@ -44,32 +52,75 @@ public class QuizViewModel extends ViewModel {
         });
     }
 
-    void onFinishQuiz() {
+    private void moveToQuestionOrFinish(int position) {
+        if (position == mQuestions.size()) {
+            finishQuiz();
+        } else {
+            currentQuestionPosition.setValue(position);
+        }
+    }
+
+    private int getCorrectAnswersAmount() {
+        int correctAnswers = 0;
+
+        for (Question question : mQuestions) {
+            //TODO: Get selected and match with correct
+        }
+
+        return correctAnswers;
+    }
+
+    private void finishQuiz() {
         QuizResult quizResult = new QuizResult(
                 0,
                 "",
                 "",
-                questions.getValue(),
-                1,
+                mQuestions,
+                getCorrectAnswersAmount(),
                 new Date()
         );
-    }
 
-    void onBackPress() {
+        int resultId = quizRepository.saveQuizResult(quizResult);
 
+        Log.d("ololo", "Result saved: id - " + resultId);
+
+        //TODO: Open result screen
+        openResultEvent.setValue(resultId);
+        finishEvent.call();
     }
 
     void onAnswerClick(int selectedAnswerPosition) {
+        Integer currentPosition = currentQuestionPosition.getValue();
+        if (currentPosition == null || mQuestions == null) {
+            return;
+        }
 
+        Question question = mQuestions.get(currentPosition);
+
+        if (question.getSelectedAnswerPosition() == null) {
+            question.setSelectedAnswerPosition(selectedAnswerPosition);
+            mQuestions.set(currentPosition, question);
+
+            questions.setValue(mQuestions);
+        }
+
+        moveToQuestionOrFinish(currentPosition + 1);
+    }
+
+    void onBackPressed() {
+        Integer currentPosition = currentQuestionPosition.getValue();
+
+        if (currentPosition != null) {
+            if (currentPosition == 0) {
+                finishEvent.call();
+            } else {
+                currentQuestionPosition.setValue(currentPosition - 1);
+            }
+        }
     }
 
     void onSkipClick() {
-        Question question = mQuestions.get(currentQuestionPosition());
-        question.setSelectedAnswerPosition(-1);
-        mQuestions.set(currentQuestionPosition(), question);
-
-        questions.setValue(mQuestions);
-
-        currentQuestionPosition.setValue(currentQuestionPosition.getValue() + 1);
+        finishQuiz();
+//        onAnswerClick(-1);
     }
 }

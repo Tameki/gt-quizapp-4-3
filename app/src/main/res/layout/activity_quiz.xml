@@ -6,4 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".presentation.quiz.QuizActivity">
 
+    <Button
+        android:id="@+id/quiz_skip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Skip"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

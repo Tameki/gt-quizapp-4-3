@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import com.geektech.quizapp_gt_3.R;
 import com.geektech.quizapp_gt_3.model.Question;
@@ -36,6 +37,12 @@ public class QuizActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
 
+        initView();
+
+        initViewModel();
+    }
+
+    private void initViewModel() {
         viewModel = ViewModelProviders.of(this)
                 .get(QuizViewModel.class);
 
@@ -57,9 +64,19 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
 
+        viewModel.finishEvent.observe(this, aVoid -> {
+            finish();
+        });
+
+        //TODO: Observer openResultEvent and open Result
+
         viewModel.init(
                 10, 1, "easy"
         );
+    }
+
+    private void initView() {
+        findViewById(R.id.quiz_skip).setOnClickListener(v -> viewModel.onSkipClick());
     }
 }
 

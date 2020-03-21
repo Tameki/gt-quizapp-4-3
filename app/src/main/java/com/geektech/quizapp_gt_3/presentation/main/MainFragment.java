@@ -37,6 +37,14 @@ public class MainFragment extends Fragment {
 //        mQuestionsSeekbar.getProgress();
 //        mCategorySpinner.getSelectedIndex() + 8;
 //        mCategorySpinner.getSelectedItem().toString().toLowerCase();
+
+        view.findViewById(R.id.main_start).setOnClickListener(v -> {
+            QuizActivity.start(
+                    getActivity(),
+                    10,
+                    null,
+                    null);
+        });
     }
 
     private void onStartClick() {

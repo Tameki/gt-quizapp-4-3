@@ -1,6 +1,10 @@
 package com.geektech.quizapp_gt_3.data.local;
 
+import androidx.lifecycle.LiveData;
+
 import com.geektech.quizapp_gt_3.model.QuizResult;
+
+import java.util.List;
 
 public class HistoryStorage {
 
@@ -10,8 +14,12 @@ public class HistoryStorage {
         this.mHistoryDao = historyDao;
     }
 
-    void saveQuizResult(QuizResult quizResult) {
-        mHistoryDao.insert(quizResult);
+    public int saveQuizResult(QuizResult quizResult) {
+        return (int) mHistoryDao.insert(quizResult);
+    }
+
+    public LiveData<List<QuizResult>> getQuizResults() {
+        return mHistoryDao.getAll();
     }
 
 }

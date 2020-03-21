@@ -1,9 +1,12 @@
 package com.geektech.quizapp_gt_3.data;
 
+import androidx.lifecycle.LiveData;
+
 import com.geektech.quizapp_gt_3.data.local.HistoryStorage;
 import com.geektech.quizapp_gt_3.data.remote.IQuizApiClient;
 import com.geektech.quizapp_gt_3.data.remote.QuizApiClient;
 import com.geektech.quizapp_gt_3.model.Question;
+import com.geektech.quizapp_gt_3.model.QuizResult;
 
 import java.util.List;
 
@@ -41,5 +44,13 @@ public class QuizRepository {
                 callback.onFailure(e);
             }
         });
+    }
+
+    public int saveQuizResult(QuizResult quizResult) {
+        return localDataSource.saveQuizResult(quizResult);
+    }
+
+    public LiveData<List<QuizResult>> getQuizResults() {
+        return localDataSource.getQuizResults();
     }
 }
