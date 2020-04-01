@@ -1,13 +1,16 @@
 package com.geektech.quizapp_gt_3.data;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Transformations;
 
 import com.geektech.quizapp_gt_3.data.local.HistoryStorage;
 import com.geektech.quizapp_gt_3.data.remote.IQuizApiClient;
 import com.geektech.quizapp_gt_3.data.remote.QuizApiClient;
+import com.geektech.quizapp_gt_3.model.History;
 import com.geektech.quizapp_gt_3.model.Question;
 import com.geektech.quizapp_gt_3.model.QuizResult;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class QuizRepository {
@@ -52,5 +55,15 @@ public class QuizRepository {
 
     public LiveData<List<QuizResult>> getQuizResults() {
         return localDataSource.getQuizResults();
+    }
+
+    public LiveData<List<History>> getHistory() {
+        return Transformations.map(getQuizResults(), quizResults -> {
+            ArrayList<History> histories = new ArrayList<>();
+
+            // Fill histories, for()
+
+            return histories;
+        });
     }
 }

@@ -1,10 +1,8 @@
 package com.geektech.quizapp_gt_3.data.remote;
 
-import com.geektech.quizapp_gt_3.core.CoreCallback;
+import com.geektech.core.CoreCallback;
 
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;

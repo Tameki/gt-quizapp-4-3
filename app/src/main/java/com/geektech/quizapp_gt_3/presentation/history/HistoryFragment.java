@@ -54,13 +54,7 @@ public class HistoryFragment extends Fragment {
         mViewModel = ViewModelProviders.of(this)
                 .get(HistoryViewModel.class);
 
-//        mViewModel.history.observe(this, histories -> mAdapter.update(histories));
-
         mViewModel.history.observe(this, mAdapter::update);
-
-        mViewModel.quizResults.observe(this, results -> {
-            Log.d("ololo", "Size " + results.size());
-        });
     }
 
 }

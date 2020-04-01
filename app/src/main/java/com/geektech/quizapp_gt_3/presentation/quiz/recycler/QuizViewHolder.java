@@ -1,5 +1,6 @@
 package com.geektech.quizapp_gt_3.presentation.quiz.recycler;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;

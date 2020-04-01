@@ -1,4 +1,4 @@
-package com.geektech.quizapp_gt_3.core;
+package com.geektech.core;
 
 public interface ChangeListener<T> {
     void onChanged(T value);

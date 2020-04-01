@@ -1,4 +1,4 @@
-package com.geektech.quizapp_gt_3.core;
+package com.geektech.core;
 
 import android.util.Log;
 

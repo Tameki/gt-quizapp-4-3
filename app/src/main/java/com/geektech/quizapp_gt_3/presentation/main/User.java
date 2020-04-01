@@ -1,6 +1,6 @@
 package com.geektech.quizapp_gt_3.presentation.main;
 
-import com.geektech.quizapp_gt_3.core.ChangeListener;
+import com.geektech.core.ChangeListener;
 
 public class User {
     private String name;
